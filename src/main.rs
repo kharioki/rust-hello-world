@@ -1,26 +1,39 @@
-use std::io; // Import the io module - this is a standard library module
+use std::collections::HashMap;
+
+// Hashmap - is a collection of key-value pairs
 
 fn main() {
-    let mut input = String::new(); // Create a mutable string variable
+    // create a hashmap
+    let mut scores = HashMap::new();
 
-    // println!("Enter a number: "); // Print a message to the console
+    // Add values
+    scores.insert(String::from("Rust"), 87);
+    scores.insert(String::from("Dart"), 90);
+    scores.insert(String::from("Solidity"), 80);
+    scores.insert(String::from("Javascript"), 95);
+    scores.insert(String::from("Android"), 100);
 
-    // match io::stdin().read_line(&mut input) {
-    //     // Read the input into the variable
-    //     Ok(_) => {
-    //         let input: i32 = input.trim().parse().unwrap(); // Convert the input to an integer
-    //         println!("You entered: {}", input); // Print the input to the console
-    //     }
-    //     Err(error) => println!("Error: {}", error), // Print the error to the console
-    // }
+    // find length of hashmap
+    println!("Total languages tested: {}", scores.len());
 
-    println!("Enter a message: ");
+    // get value of a key
+    let rust_score = scores.get(&String::from("Rust"));
+    println!("Rust score: {}", rust_score.unwrap());
 
-    match io::stdin().read_line(&mut input) {
-        Ok(_) => {
-            let input = input.trim();
-            println!("You said: {}", input.to_uppercase());
-        }
-        Err(error) => println!("Error: {}", error),
+    // get value with match provider - if key is not found, return None
+    match scores.get("Javascript") {
+        Some(score) => println!("Javascript score: {}", score),
+        None => println!("No Javascript score"),
     }
+
+    // removing a value
+    scores.remove("Android");
+
+    // loop through hashmap
+    for (key, value) in &scores {
+        println!("{}: {}%", key, value);
+    }
+
+    // check for value
+    println!("Did you study c++?: {}", scores.contains_key("C++"));
 }
