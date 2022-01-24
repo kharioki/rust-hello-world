@@ -1,20 +1,23 @@
-struct Color {
-    red: u8,
-    green: u8,
-    blue: u8,
-}
+/*
+    Arrays:
+    Arrays are a collection of values of the same type.
+    Arrays are zero-indexed.
+*/
 
 fn main() {
-    let blue = Color {
-        red: 0,
-        green: 0,
-        blue: 255,
-    };
+    let numbers = [1, 2, 3, 4, 5];
 
-    print_color(&blue);
-    print_color(&blue); // this works because we are passing a reference of blue
-}
+    // Accessing an element
+    // numbers[0]; // 1
+    // numbers[4]; // 5
 
-fn print_color(c: &Color) {
-    println!("Color: red={}, green={}, blue={}", c.red, c.green, c.blue);
+    // looping through an array
+    for number in numbers.iter() {
+        println!("{}", number);
+    }
+
+    // looping through an array with indices
+    for i in 0..numbers.len() {
+        println!("{}", numbers[i]);
+    }
 }
