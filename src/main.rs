@@ -1,9 +1,32 @@
-use std::fs::File;
-// use prelude module that will help us perform read or write operations
-use std::io::prelude::*;
+struct Person {
+    name: String,
+    age: u8,
+}
+
+trait HasVoiceBox {
+    // speak
+    fn speak(&self);
+
+    // check if can speak
+    fn can_speak(&self) -> bool;
+}
+
+impl HasVoiceBox for Person {
+    fn speak(&self) {
+        println!("Hello, my name is {}", self.name);
+    }
+
+    fn can_speak(&self) -> bool {
+        self.age > 3
+    }
+}
 
 fn main() {
-    let mut file = File::create("output.txt").expect("Failed to create file");
-    file.write_all(b"Hello there!!!\n")
-        .expect("Failed to write to file");
+    let person = Person {
+        name: String::from("Tony"),
+        age: 4,
+    };
+
+    person.speak();
+    println!("Can {} speak? {}", person.name, person.can_speak());
 }
