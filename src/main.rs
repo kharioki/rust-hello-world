@@ -1,13 +1,12 @@
-use std::fs::File;
-// use prelude module that will help us perform read or write operations
-use std::io::prelude::*;
+use std::env;
 
 fn main() {
-    let mut file = File::open("info.txt").expect("Can't open file");
+    let args: Vec<String> = env::args().collect();
 
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)
-        .expect("Oops!!! Can't read file...");
+    for arguments in args.iter() {
+        println!("{}", arguments);
+    }
 
-    println!("File contents:\n\n {}", contents);
+    // you can also print with indices
+    println!("{}", args[1]);
 }
