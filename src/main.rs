@@ -1,33 +1,26 @@
-/*
-    match operator
-    - match is used to match a value against a pattern
-    - is the rust equivalent of the switch statement
-*/
+use std::io; // Import the io module - this is a standard library module
 
 fn main() {
-    let number = 13;
+    let mut input = String::new(); // Create a mutable string variable
 
-    match number {
-        // match against a single value
-        1 => println!("one"),
-        // match against a range of values
-        2 | 3 | 5 | 7 | 11 => println!("This is a prime"),
-        // match against a variable number of values
-        13..=19 => println!("A teen"),
-        // match against a single value
-        // _ is a wildcard
-        _ => println!("Ain't special"),
-    }
+    // println!("Enter a number: "); // Print a message to the console
 
-    // matching a string
-    let name = "Kiki";
+    // match io::stdin().read_line(&mut input) {
+    //     // Read the input into the variable
+    //     Ok(_) => {
+    //         let input: i32 = input.trim().parse().unwrap(); // Convert the input to an integer
+    //         println!("You entered: {}", input); // Print the input to the console
+    //     }
+    //     Err(error) => println!("Error: {}", error), // Print the error to the console
+    // }
 
-    match name {
-        // match against a single value
-        "Peter" => println!("Hi Peter"),
-        // match against a range of values
-        "Paul" | "Mary" | "John" => println!("Hi {}", name),
-        // match against a variable number of values
-        _ => println!("Hi {}!!!", name),
+    println!("Enter a message: ");
+
+    match io::stdin().read_line(&mut input) {
+        Ok(_) => {
+            let input = input.trim();
+            println!("You said: {}", input.to_uppercase());
+        }
+        Err(error) => println!("Error: {}", error),
     }
 }
