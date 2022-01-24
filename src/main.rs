@@ -1,39 +1,11 @@
-use std::collections::HashMap;
-
-// Hashmap - is a collection of key-value pairs
+extern crate rand;
+use rand::Rng;
 
 fn main() {
-    // create a hashmap
-    let mut scores = HashMap::new();
+    let num = rand::thread_rng().gen_range(1..101); // Generate a random number between 1 and 100
+    println!("Random number! {}", num);
 
-    // Add values
-    scores.insert(String::from("Rust"), 87);
-    scores.insert(String::from("Dart"), 90);
-    scores.insert(String::from("Solidity"), 80);
-    scores.insert(String::from("Javascript"), 95);
-    scores.insert(String::from("Android"), 100);
-
-    // find length of hashmap
-    println!("Total languages tested: {}", scores.len());
-
-    // get value of a key
-    let rust_score = scores.get(&String::from("Rust"));
-    println!("Rust score: {}", rust_score.unwrap());
-
-    // get value with match provider - if key is not found, return None
-    match scores.get("Javascript") {
-        Some(score) => println!("Javascript score: {}", score),
-        None => println!("No Javascript score"),
-    }
-
-    // removing a value
-    scores.remove("Android");
-
-    // loop through hashmap
-    for (key, value) in &scores {
-        println!("{}: {}%", key, value);
-    }
-
-    // check for value
-    println!("Did you study c++?: {}", scores.contains_key("C++"));
+    // flip a coin
+    let coin = rand::thread_rng().gen_bool(1.0 / 2.0); // Generate a random boolean
+    println!("Coin flip! {}", coin);
 }
