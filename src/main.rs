@@ -3,11 +3,7 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-    let mut file = File::open("info.txt").expect("Can't open file");
-
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)
-        .expect("Oops!!! Can't read file...");
-
-    println!("File contents:\n\n {}", contents);
+    let mut file = File::create("output.txt").expect("Failed to create file");
+    file.write_all(b"Hello there!!!\n")
+        .expect("Failed to write to file");
 }
