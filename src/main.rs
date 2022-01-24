@@ -1,29 +1,25 @@
 /*
-    strings:
-    The string type is a growable, UTF-8 encoded bit of text.
-    It is stored as a sequence of bytes, and is indexed by byte.
+    traits:
+    A trait is a contract that defines a set of methods that a type must implement.
+    A trait is like an interface in Java.
 */
 
-fn main() {
-    // defining a string
-    let mut my_string = String::from("Howdy! I'm a Tony! Nice to meet ya!");
+struct Person {
+    name: String,
+    age: u8,
+}
 
-    // printing a string
-    println!("{}", my_string);
-    // length
-    println!("Length: {}", my_string.len());
-    // Is empty?
-    println!("Is empty? {}", my_string.is_empty());
-
-    // split whitespace
-    for token in my_string.split_whitespace() {
-        println!("{}", token);
+impl ToString for Person {
+    fn to_string(&self) -> String {
+        format!("{} is {} years old", self.name, self.age)
     }
+}
 
-    // check if a string contains a substring
-    println!("Contains 'Tony'?: {}", my_string.contains("Tony"));
+fn main() {
+    let person = Person {
+        name: String::from("Tony"),
+        age: 30,
+    };
 
-    // push to a string
-    my_string.push_str(" I'm a rustacean!");
-    println!("{}", my_string);
+    println!("{}", person.to_string());
 }
