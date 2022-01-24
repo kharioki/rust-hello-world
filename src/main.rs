@@ -1,34 +1,29 @@
 /*
-    impl:
-    impl is a keyword in Rust. It is used to add methods in a struct.
+    strings:
+    The string type is a growable, UTF-8 encoded bit of text.
+    It is stored as a sequence of bytes, and is indexed by byte.
 */
 
-struct Rectangle {
-    width: u32,
-    height: u32,
-}
-
-impl Rectangle {
-    // &self - reference to the current instance of the struct
-
-    fn print_description(&self) {
-        println!(
-            "Rectangle with width {} and height {}",
-            self.width, self.height
-        );
-    }
-
-    fn is_square(&self) -> bool {
-        self.width == self.height
-    }
-}
-
 fn main() {
-    let my_rect = Rectangle {
-        width: 30,
-        height: 50,
-    };
+    // defining a string
+    let mut my_string = String::from("Howdy! I'm a Tony! Nice to meet ya!");
 
-    my_rect.print_description();
-    println!("Is Rectangle a square? {}", my_rect.is_square());
+    // printing a string
+    println!("{}", my_string);
+    // length
+    println!("Length: {}", my_string.len());
+    // Is empty?
+    println!("Is empty? {}", my_string.is_empty());
+
+    // split whitespace
+    for token in my_string.split_whitespace() {
+        println!("{}", token);
+    }
+
+    // check if a string contains a substring
+    println!("Contains 'Tony'?: {}", my_string.contains("Tony"));
+
+    // push to a string
+    my_string.push_str(" I'm a rustacean!");
+    println!("{}", my_string);
 }
