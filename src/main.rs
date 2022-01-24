@@ -19,7 +19,7 @@ fn main() {
     match io::stdin().read_line(&mut input) {
         Ok(_) => {
             let input = input.trim();
-            println!("You said: {}", input);
+            println!("You said: {}", input.to_uppercase());
         }
         Err(error) => println!("Error: {}", error),
     }
