@@ -1,25 +1,29 @@
 /*
-    traits:
-    A trait is a contract that defines a set of methods that a type must implement.
-    A trait is like an interface in Java.
+    vectors:
+    A vector is a growable array.
 */
 
-struct Person {
-    name: String,
-    age: u8,
-}
-
-impl ToString for Person {
-    fn to_string(&self) -> String {
-        format!("{} is {} years old", self.name, self.age)
-    }
-}
-
 fn main() {
-    let person = Person {
-        name: String::from("Tony"),
-        age: 30,
-    };
+    // define a vector
+    // let my_vector: Vec<i32> = Vec::new();
+    let mut my_vector = vec![1, 2, 3, 4, 5];
 
-    println!("{}", person.to_string());
+    // accessing elements
+    println!("{}", my_vector[0]);
+
+    // pushing elements
+    my_vector.push(6); // adds to the end of the vector
+    println!("{}", my_vector[5]);
+
+    // removing elements
+    my_vector.pop(); // removes the last element
+    println!("{}", my_vector[4]);
+
+    my_vector.remove(0); // removes the element at the given index
+    println!("{}", my_vector[0]);
+
+    // iterating over vectors
+    for i in my_vector.iter() {
+        println!("{}", i);
+    }
 }
