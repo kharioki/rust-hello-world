@@ -1,28 +1,28 @@
+extern crate reqwest;
+
 fn main() {
-    // let name = String::from("Tony Kharioki");
-
-    // use match to get character at index
-    // println!(
-    //     "Character at index 8: {}",
-    //     match name.chars().nth(8) {
-    //         Some(c) => c.to_string(),
-    //         None => "No character found at index 8".to_string(),
+    // using match to handle errors
+    // match reqwest::blocking::get("https://kharioki.com/") {
+    //     Ok(mut response) => {
+    //         // check if 200 OK
+    //         if response.status() == reqwest::StatusCode::OK {
+    //             // read the response body
+    //             // let body = response.text().unwrap();
+    //             // println!("Response: {}", body);
+    //             match response.text() {
+    //                 Ok(text) => println!("Response text: {}", text),
+    //                 Err(e) => println!("Error: {}", e),
+    //             }
+    //         } else {
+    //             println!("Response was not 200 OK");
+    //         }
     //     }
-    // );
-    println!(
-        "Occupation: {}",
-        match get_occupation("Kiki") {
-            Some(occ) => occ.to_string(),
-            None => "No occupation found".to_string(),
-        }
-    );
-}
+    //     Err(e) => println!("Error: {}", e),
+    // }
 
-// using Option
-fn get_occupation(name: &str) -> Option<&str> {
-    match name {
-        "Tony" => Some("Software Developer"),
-        "Karioki" => Some("Developer"),
-        _ => None,
-    }
+    let response_text = reqwest::blocking::get("https://kharioki.com/")
+        .expect("Failed to get response")
+        .text()
+        .expect("Failed to get text");
+    println!("Response text: {}", response_text);
 }
