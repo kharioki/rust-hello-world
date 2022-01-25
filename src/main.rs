@@ -1,28 +1,34 @@
-extern crate reqwest;
+#![allow(dead_code)]
+
+enum Day {
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday,
+}
+
+impl Day {
+    fn is_weekday(&self) -> bool {
+        match self {
+            &Day::Saturday | &Day::Sunday => false,
+            _ => true,
+        }
+    }
+
+    // fn is_weekend(&self) -> bool {
+    //     match self {
+    //         Day::Saturday | Day::Sunday => true,
+    //         _ => false,
+    //     }
+    // }
+}
 
 fn main() {
-    // using match to handle errors
-    // match reqwest::blocking::get("https://kharioki.com/") {
-    //     Ok(mut response) => {
-    //         // check if 200 OK
-    //         if response.status() == reqwest::StatusCode::OK {
-    //             // read the response body
-    //             // let body = response.text().unwrap();
-    //             // println!("Response: {}", body);
-    //             match response.text() {
-    //                 Ok(text) => println!("Response text: {}", text),
-    //                 Err(e) => println!("Error: {}", e),
-    //             }
-    //         } else {
-    //             println!("Response was not 200 OK");
-    //         }
-    //     }
-    //     Err(e) => println!("Error: {}", e),
-    // }
-
-    let response_text = reqwest::blocking::get("https://kharioki.com/")
-        .expect("Failed to get response")
-        .text()
-        .expect("Failed to get text");
-    println!("Response text: {}", response_text);
+    let d = Day::Monday;
+    let s = Day::Saturday;
+    println!("Is d a weekday? {}", d.is_weekday());
+    println!("Is s a weekday? {}", s.is_weekday());
 }
