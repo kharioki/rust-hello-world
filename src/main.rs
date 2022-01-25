@@ -1,24 +1,24 @@
-/* regex */
+/* modules */
 
-extern crate regex;
+mod text {
+    fn greet() {
+        println!("How are you doing?");
+    }
 
-use regex::Regex;
+    pub fn print_text() {
+        println!("Hello, Kharioki!");
+        greet();
+    }
+
+    // module inside a module
+    pub mod text_2 {
+        pub fn print_text() {
+            println!("Hello, Tony Stark!");
+        }
+    }
+}
 
 fn main() {
-    // let re = Regex::new(r"\w{5}").unwrap() // match a 5 letter word
-    let re = Regex::new(r"\w{5}").unwrap();
-    let text = "hello";
-
-    println!("Found match? {}", re.is_match(text));
-
-    // regex with capture
-    let reg = Regex::new(r"(\w{5})").unwrap();
-
-    let txt = "was";
-
-    // using match to get the capture
-    match reg.captures(txt) {
-        Some(caps) => println!("{}", caps.get(1).unwrap().as_str()),
-        None => println!("No match"),
-    }
+    text::print_text();
+    text::text_2::print_text();
 }
