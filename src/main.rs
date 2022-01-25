@@ -1,34 +1,18 @@
-#![allow(dead_code)]
-
-enum Day {
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday,
-}
-
-impl Day {
-    fn is_weekday(&self) -> bool {
-        match self {
-            &Day::Saturday | &Day::Sunday => false,
-            _ => true,
-        }
-    }
-
-    // fn is_weekend(&self) -> bool {
-    //     match self {
-    //         Day::Saturday | Day::Sunday => true,
-    //         _ => false,
-    //     }
-    // }
-}
+use std::process::Command;
 
 fn main() {
-    let d = Day::Monday;
-    let s = Day::Saturday;
-    println!("Is d a weekday? {}", d.is_weekday());
-    println!("Is s a weekday? {}", s.is_weekday());
+    // python print.py
+    let mut cmd = Command::new("python");
+    cmd.arg("print.py");
+
+    // execute the command
+    match cmd.output() {
+        Ok(out) => {
+            // out here is a vector of bytes. we need to convert it to a string
+            println!("Output: {}", String::from_utf8_lossy(&out.stdout));
+        }
+        Err(e) => {
+            println!("Failed to execute process: {}", e);
+        }
+    }
 }
