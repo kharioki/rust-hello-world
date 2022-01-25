@@ -1,24 +1,28 @@
-/* modules */
+fn main() {
+    // let name = String::from("Tony Kharioki");
 
-mod text {
-    fn greet() {
-        println!("How are you doing?");
-    }
-
-    pub fn print_text() {
-        println!("Hello, Kharioki!");
-        greet();
-    }
-
-    // module inside a module
-    pub mod text_2 {
-        pub fn print_text() {
-            println!("Hello, Tony Stark!");
+    // use match to get character at index
+    // println!(
+    //     "Character at index 8: {}",
+    //     match name.chars().nth(8) {
+    //         Some(c) => c.to_string(),
+    //         None => "No character found at index 8".to_string(),
+    //     }
+    // );
+    println!(
+        "Occupation: {}",
+        match get_occupation("Kiki") {
+            Some(occ) => occ.to_string(),
+            None => "No occupation found".to_string(),
         }
-    }
+    );
 }
 
-fn main() {
-    text::print_text();
-    text::text_2::print_text();
+// using Option
+fn get_occupation(name: &str) -> Option<&str> {
+    match name {
+        "Tony" => Some("Software Developer"),
+        "Karioki" => Some("Developer"),
+        _ => None,
+    }
 }
